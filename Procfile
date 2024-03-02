@@ -1,0 +1,1 @@
+web: gunicorn uottahack_ford.wsgi
