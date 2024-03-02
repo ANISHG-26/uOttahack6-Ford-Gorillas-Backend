@@ -27,7 +27,14 @@ class EVTracker(View):
                 end_address, api_key
             )
         )
-        print(end_osm_response.json())
+        if len(start_osm_response.json()) == 0:
+            return JsonResponse(
+                {"message": "Start address not found"}, status=HTTPStatus.OK
+            )
+        if len(end_osm_response.json()) == 0:
+            return JsonResponse(
+                {"message": "End address not found"}, status=HTTPStatus.OK
+            )
         start_coords = (
             start_osm_response.json()[0]["lat"],
             start_osm_response.json()[0]["lon"],
