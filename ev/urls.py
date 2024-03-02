@@ -18,6 +18,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
-from ev.views import EVTracker
+from ev.views import EVTracker, StationLocator
 
-urlpatterns = [path("ev_tracker", EVTracker.as_view())]
+urlpatterns = [
+    path("ev_tracker", EVTracker.as_view()),
+    path("station_locator", StationLocator.as_view()),
+]

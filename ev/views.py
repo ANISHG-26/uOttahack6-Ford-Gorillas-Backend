@@ -46,3 +46,17 @@ class EVTracker(View):
         return JsonResponse(
             {"start": start_coords, "end": end_coords}, status=HTTPStatus.OK
         )
+
+
+class StationLocator(View):
+    def get(self, request):
+        state = "ON"
+        country = "CA"
+        fuel_type = "ELEC"
+        api_key = "FinfYVhfNcMPWyZPOS2BRycSuwFDCXfx8J4lbmni"
+        start_osm_response = requests.get(
+            f"https://developer.nrel.gov/api/alt-fuel-stations/v1.geojson?"
+            + f"api_key={api_key}&fuel_type={fuel_type}&state={state}&country={country}"
+        )
+        time.sleep(2)
+        return JsonResponse(start_osm_response, status=HTTPStatus.OK)
