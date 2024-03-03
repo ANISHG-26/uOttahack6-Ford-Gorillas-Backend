@@ -36,12 +36,12 @@ class GetCoordinates(View):
                 {"message": "End address not found"}, status=HTTPStatus.OK
             )
         start_coords = (
-            start_osm_response.json()[0]["lat"],
             start_osm_response.json()[0]["lon"],
+            start_osm_response.json()[0]["lat"],
         )
         end_coords = (
-            end_osm_response.json()[0]["lat"],
             end_osm_response.json()[0]["lon"],
+            end_osm_response.json()[0]["lat"],
         )
         return JsonResponse(
             {"start": start_coords, "end": end_coords}, status=HTTPStatus.OK
