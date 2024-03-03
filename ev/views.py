@@ -8,7 +8,7 @@ import time
 # Create your views here.
 
 
-class EVTracker(View):
+class GetCoordinates(View):
     def get(self, request):
         param_dict = request.GET
         start_address = param_dict.get("start_address")
