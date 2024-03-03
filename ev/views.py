@@ -36,12 +36,12 @@ class GetCoordinates(View):
                 {"message": "End address not found"}, status=HTTPStatus.OK
             )
         start_coords = (
-            start_osm_response.json()[0]["lon"],
             start_osm_response.json()[0]["lat"],
+            start_osm_response.json()[0]["lon"],
         )
         end_coords = (
-            end_osm_response.json()[0]["lon"],
             end_osm_response.json()[0]["lat"],
+            end_osm_response.json()[0]["lon"],
         )
         return JsonResponse(
             {"start": start_coords, "end": end_coords}, status=HTTPStatus.OK
@@ -62,8 +62,8 @@ class StationLocator(View):
         )
         # print(station_loc_response.json()["fuel_stations"])
         station_coords = (
-            station_loc_response.json()["fuel_stations"][0]["longitude"],
             station_loc_response.json()["fuel_stations"][0]["latitude"],
+            station_loc_response.json()["fuel_stations"][0]["longitude"],
         )
 
         return JsonResponse({"station_coords": station_coords}, status=HTTPStatus.OK)
