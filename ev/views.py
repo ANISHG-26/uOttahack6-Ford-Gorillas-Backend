@@ -61,7 +61,7 @@ class StationLocator(View):
             + f"api_key={api_key}&fuel_type={fuel_type}&latitude={latitude}&longitude={longitude}&radius={radius}&limit=1"
         )
         # print(station_loc_response.json()["fuel_stations"])
-        if len(station_coords.json()) == 0:
+        if len(station_loc_response.json()) == 0:
             return JsonResponse({}, status=HTTPStatus.OK)
         station_coords = (
             station_loc_response.json()["fuel_stations"][0]["latitude"],
