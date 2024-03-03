@@ -58,11 +58,12 @@ class StationLocator(View):
         api_key = "FinfYVhfNcMPWyZPOS2BRycSuwFDCXfx8J4lbmni"
         station_loc_response = requests.get(
             f"https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?"
-            + f"api_key={api_key}&fuel_type={fuel_type}&latitude={latitude}&longitude={longitude}&radius={radius}"
+            + f"api_key={api_key}&fuel_type={fuel_type}&latitude={latitude}&longitude={longitude}&radius={radius}&limit=1"
         )
         # print(station_loc_response.json()["fuel_stations"])
-        station_coords = [
-            (station["latitude"], station["longitude"])
-            for station in station_loc_response.json()["fuel_stations"]
-        ]
+        station_coords = (
+            station_loc_response.json()["fuel_stations"][0]["longitude"],
+            station_loc_response.json()["fuel_stations"][0]["latitude"],
+        )
+
         return JsonResponse({"station_coords": station_coords}, status=HTTPStatus.OK)
